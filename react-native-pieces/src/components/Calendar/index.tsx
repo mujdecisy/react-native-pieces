@@ -163,9 +163,9 @@ const getCalendarDates = (date: Date) => {
 	const endDate = new Date(lastDayOfMonth);
 	endDate.setDate(endDate.getDate() + (6 - endDate.getDay()));
 
-	const calendarDates = [];
+	const calendarDates = [] as Date[][];
 	const currentDate = new Date(startDate);
-	let week = [];
+	let week = [] as Date[];
 	while (currentDate <= endDate) {
 		week.push(new Date(currentDate));
 		if (week.length === 7) {

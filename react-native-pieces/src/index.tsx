@@ -10,6 +10,8 @@ import Takoz from "./components/Takoz";
 import ColorScheme from "./style/colors";
 import SizeScheme from "./style/sizes";
 import * as StyleFuncs from "./style/styles";
+import { InputTypes } from "./components/Input/types";
+import { ValidStates } from "./components/Input/types";
 
 export {
     ButtonIcon,
@@ -23,5 +25,7 @@ export {
     Input,
     Layout,
     Modal,
-    Takoz
+    Takoz,
+    InputTypes,
+    ValidStates
 }

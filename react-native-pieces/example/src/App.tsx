@@ -1,18 +1,22 @@
-import { Text, View } from 'react-native';
-import Layout from './src/components/Layout';
-import SizeScheme from './src/style/sizes';
-import ButtonIcon from './src/components/ButtonIcon';
-
-import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
-import ButtonText from './src/components/ButtonText';
-import Takoz from './src/components/Takoz';
-import Dictionary from './src/components/Dictionary';
+import * as React from 'react';
 import { useState } from 'react';
-import Modal from './src/components/Modal';
-import Calendar from './src/components/Calendar';
-import Input from './src/components/Input';
-import Header from './src/components/Header';
-import { InputTypes } from './src/components/Input/types';
+
+import { StyleSheet, View, Text } from 'react-native';
+
+import {
+  Layout,
+  InputTypes,
+  Header,
+  SizeScheme,
+  Takoz,
+  ButtonIcon,
+  ButtonText,
+  Dictionary,
+  Calendar,
+  Input,
+  Modal
+} from 'react-native-pieces';
+import {faFloppyDisk, faEnvelope, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 
 const INFO = [
 	{ key: 'Born', value: 'September 9, 1941[1][2][3][4] Bronxville, New York, U.S.' },
@@ -56,6 +60,10 @@ export default function App() {
 					}
 				} as any}
 				title='An App'
+				buttons={[
+					{faIcon: faEnvelope, handleClick:()=>{console.log('faEnvelope')}},
+					{faIcon: faInfoCircle, handleClick:()=>{console.log('faInfoCircle')}}
+				]}
 			/>
 
 			<Text style={{ fontSize: SizeScheme.get().font.a }}>HELLO</Text>
