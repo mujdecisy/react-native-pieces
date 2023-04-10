@@ -60,7 +60,7 @@ export const InputDateRightButton = ({handleClick, style, buttonSize}:{handleCli
 }
 
 export const InputDateModalContent = ({targetDate, handleChange}: {targetDate: string[], handleChange: (date:string[])=>void} ) => {
-	const [stateTargetDate, setStateTargetDate] = useState( checkIfDate(targetDate[0])? new Date(targetDate[0]) : new Date());
+	const [stateTargetDate, setStateTargetDate] = useState( checkIfDate(targetDate[0])? new Date(targetDate[0] as string) : new Date());
 	
 	return (
 		<>
@@ -77,7 +77,10 @@ export const InputDateModalContent = ({targetDate, handleChange}: {targetDate: s
 	);
 }
 
-export const checkIfDate = (value: string) => {
+export const checkIfDate = (value: string|undefined) => {
+	if (!value) {
+		return false;
+	}
 	const date = new Date(value);
 	return (date instanceof Date && !isNaN(date.getTime()) && /\d{4}-\d{2}-\d{2}/.test(value));
 }

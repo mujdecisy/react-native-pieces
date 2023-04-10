@@ -5,7 +5,7 @@ import ColorScheme from '../../style/colors';
 import ButtonIcon from '../ButtonIcon';
 import { IconDefinition, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import Takoz from '../Takoz';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export interface HeaderProps {
 	title: string

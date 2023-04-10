@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Pressable, ViewStyle } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { IconDefinition } from '@fortawesome/fontawesome-common-types';
+import type { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import ColorScheme from '../../style/colors';
 import SizeScheme from '../../style/sizes';
 
