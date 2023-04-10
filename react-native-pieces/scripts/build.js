@@ -12,15 +12,15 @@ const {
 const main = async () => {
     /* --------------------------------------- FOLDER DEFINITIONS */
     const projectName = 'react-native-pieces';
-    const buildPath = `${getCurrentFolderPath()}/../../.build`;
-    const buildProjectPath = `${buildPath}/${projectName}`;
+    const distPath = `${getCurrentFolderPath()}/../../dist`;
+    const distProjectPath = `${distPath}/${projectName}`;
     const projectPath = `${getCurrentFolderPath()}/..`;
 
 
     /* --------------------------------------- DELETE & CREATE BUILD FOLDER */
-    deleteDirectoryRecursive(buildPath);
-    createDirectoryIfNotExists(buildPath);
-    createDirectoryIfNotExists(buildProjectPath);
+    deleteDirectoryRecursive(distPath);
+    createDirectoryIfNotExists(distPath);
+    createDirectoryIfNotExists(distProjectPath);
 
     /* --------------------------------------- UPDATE PACKAGE.JSON FOR BUILD */
     const packageJsonBuild = readJSONFile(projectPath + '/package.json');
@@ -34,7 +34,7 @@ const main = async () => {
     packageJsonBuild.dependencies = dependencies;
     delete packageJsonBuild.scripts;
     delete packageJsonBuild.private;
-    writeJSONFile(buildProjectPath + '/package.json', packageJsonBuild);
+    writeJSONFile(distProjectPath + '/package.json', packageJsonBuild);
 
     /* --------------------------------------- UPDATE PACKAGE.JSON FOR NEW VERSION */
     const packageJson = readJSONFile(projectPath + '/package.json');
@@ -44,7 +44,7 @@ const main = async () => {
 
     /* --------------------------------------- BUILD & COPY */
     await runCommand('npm run build');
-    copyFolderRecursive(projectPath + '/dist/src', buildProjectPath + '/src');
+    copyFolderRecursive(projectPath + '/dist/src', distProjectPath + '/src');
 };
 
 main();
