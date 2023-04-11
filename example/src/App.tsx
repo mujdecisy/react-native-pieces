@@ -57,10 +57,10 @@ const cities = [
 ];
 
 interface FormInput {
-  value: string[]
-  type: InputTypes
-  label: string
-  options: string[]
+  value: string[];
+  type: InputTypes;
+  label: string;
+  options: string[];
 }
 
 export default function App() {
