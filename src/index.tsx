@@ -7,11 +7,10 @@ import Input from "./components/Input";
 import Layout from "./components/Layout";
 import Modal from "./components/Modal";
 import Takoz from "./components/Takoz";
-import ColorScheme from "./style/colors";
-import SizeScheme from "./style/sizes";
-import * as StyleFuncs from "./style/styles";
-import { InputTypes } from "./components/Input/types";
-import { ValidStates } from "./components/Input/types";
+import ColorScheme from "./utils/colors";
+import SizeScheme from "./utils/sizes";
+import * as StyleFuncs from "./utils/styles";
+import { InputTypes, ValidStates } from "./components/Input/types";
 
 export {
     ButtonIcon,

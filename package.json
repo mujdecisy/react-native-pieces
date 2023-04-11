@@ -53,11 +53,17 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.2.2",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-native-fontawesome": "^0.3.0",
     "@react-native-community/eslint-config": "^3.0.2",
+    "@react-navigation/native": "^6.1.6",
+    "@react-navigation/native-stack": "^6.9.12",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.70.0",
+    "@types/react-test-renderer": "^18.0.0",
     "commitlint": "^17.0.2",
     "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
@@ -69,14 +75,10 @@
     "react": "18.2.0",
     "react-native": "0.71.6",
     "react-native-builder-bob": "^0.20.4",
+    "react-native-svg": "^13.9.0",
+    "react-test-renderer": "^18.2.0",
     "release-it": "^15.0.0",
-    "typescript": "^4.5.2",
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/free-solid-svg-icons": "^6.4.0",
-    "@fortawesome/react-native-fontawesome": "^0.3.0",
-    "@react-navigation/native": "^6.1.6",
-    "@react-navigation/native-stack": "^6.9.12",
-    "react-native-svg": "^13.9.0"
+    "typescript": "^4.5.2"
   },
   "resolutions": {
     "@types/react": "17.0.21"
@@ -87,9 +89,9 @@
     "@fortawesome/react-native-fontawesome": "^0.3.0",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
-    "react-native-svg": "^13.9.0",
     "react": "18.2.0",
-    "react-native": "0.71.6"
+    "react-native": "0.71.6",
+    "react-native-svg": "^13.9.0"
   },
   "engines": {
     "node": ">= 16.0.0"
