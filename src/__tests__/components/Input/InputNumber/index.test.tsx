@@ -28,19 +28,26 @@ it('renders correctly', () => {
   expect(tree).toMatchSnapshot();
 });
 
-it('throws error when sending empty array as value', () => {
-  const func = jest.fn();
-  const renderFunc = () => {
-    renderer.create(
-      <InputNumber
-        handleChange={func}
-        style={{ width: 100 }}
-        value={[]}
-        placeholder={'test-placeholder'}
-      />
-    );
-  };
-  expect(renderFunc).toThrow(/Value array.*only one/);
+it('shows empty when sending empty array as value', () => {
+  let errString = '';
+  jest.spyOn(console, 'error').mockImplementation(
+    jest.fn((val) => {
+      errString = val;
+    })
+  );
+
+  const component = renderer.create(
+    <InputNumber
+      handleChange={jest.fn()}
+      style={{ width: 100 }}
+      value={[]}
+      placeholder={'test-placeholder'}
+    />
+  );
+  let tree = component.toJSON() as ReactTestRendererJSON;
+  expect(tree).toMatchSnapshot();
+  expect(tree).toBe(null);
+  expect(/Value array.*only one/.test(errString)).toBe(true);
 });
 
 it('checks type when input a number', () => {

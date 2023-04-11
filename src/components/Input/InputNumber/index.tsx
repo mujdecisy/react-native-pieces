@@ -13,10 +13,6 @@ export interface InputNumberProps {
 const InputNumber = (props: InputNumberProps) => {
   const [bgColor, setBgColor] = useState(props.style.backgroundColor);
 
-  if (props.value.length !== 1) {
-    throw new Error('Value array must have only one string value inside.');
-  }
-
   const localHandleChange = (value: string) => {
     let tValid = ValidStates.UNDEFINED;
     let tBgColor = props.style.backgroundColor;
@@ -33,6 +29,11 @@ const InputNumber = (props: InputNumberProps) => {
     setBgColor(tBgColor);
     props.handleChange([value], tValid);
   };
+
+  if (props.value.length !== 1) {
+    console.error('Value array must have only one string value inside.');
+    return <></>;
+  }
 
   return (
     <TextInput

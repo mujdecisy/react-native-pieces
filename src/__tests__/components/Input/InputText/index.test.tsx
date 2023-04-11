@@ -19,19 +19,24 @@ it('renders correctly', () => {
 });
 
 it('throws error on empty value array', () => {
-  const func = jest.fn();
-
-  const renderFunc = () => {
-    renderer.create(
-      <InputText
-        value={[]}
-        handleChange={func}
-        style={{ width: 100 }}
-        placeholder="test-placeholder"
-      />
-    );
-  };
-  expect(renderFunc).toThrow(/Value array.*only one/);
+  let errString = '';
+  jest.spyOn(console, 'error').mockImplementation(
+    jest.fn((val) => {
+      errString = val;
+    })
+  );
+  const component = renderer.create(
+    <InputText
+      value={[]}
+      handleChange={jest.fn()}
+      style={{ width: 100 }}
+      placeholder="test-placeholder"
+    />
+  );
+  let tree = component.toJSON() as ReactTestRendererJSON;
+  expect(tree).toMatchSnapshot();
+  expect(tree).toBe(null);
+  expect(/Value array.*only one/.test(errString)).toBe(true);
 });
 
 it('handles text changes', () => {

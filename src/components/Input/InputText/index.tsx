@@ -11,7 +11,8 @@ export interface InputTextProps {
 
 const InputText = (props: InputTextProps) => {
   if (props.value.length !== 1) {
-    throw new Error('Value array must have only one string value inside.');
+    console.error('Value array must have only one string value inside.');
+    return <></>;
   }
   return (
     <TextInput
