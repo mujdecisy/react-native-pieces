@@ -1,7 +1,13 @@
 export enum ValidStates {
-    VALID, INVALID, UNDEFINED
+  VALID,
+  INVALID,
+  UNDEFINED,
 }
 
 export enum InputTypes {
-    TEXT, NUMBER, DATE, SINGLE, MULTI
+  TEXT,
+  NUMBER,
+  DATE,
+  SINGLE,
+  MULTI,
 }
