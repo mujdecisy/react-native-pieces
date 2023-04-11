@@ -56,6 +56,13 @@ const cities = [
   'Edirne',
 ];
 
+interface FormInput {
+  value: string[]
+  type: InputTypes
+  label: string
+  options: string[]
+}
+
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const [halfModalVisible, setHalfModalVisible] = useState(false);
@@ -75,7 +82,7 @@ export default function App() {
       label: 'Favourite Cities',
       options: cities,
     },
-  ]);
+  ] as FormInput[]);
 
   return (
     <Layout>
@@ -182,7 +189,7 @@ export default function App() {
         <Input
           key={`form-item-${i}`}
           handleChange={(val, _) => {
-            const tForm = [...form];
+            const tForm = JSON.parse(JSON.stringify(form));
             tForm[i].value = val;
             setForm(tForm);
           }}
