@@ -10,10 +10,13 @@ export interface InputTextProps {
 }
 
 const InputText = (props: InputTextProps) => {
+    if (props.value.length !== 1) {
+        throw new Error('Value array must have only one string value inside.');
+    }
     return (
         <TextInput
             style={props.style}
-            value={props.value.length>0? props.value[0]:''}
+            value={props.value[0]}
             onChangeText={(value: string)=>props.handleChange([value])}
             placeholder={props.placeholder}
             placeholderTextColor={ColorScheme.get().textLight}

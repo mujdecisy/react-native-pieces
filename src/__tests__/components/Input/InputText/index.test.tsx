@@ -17,6 +17,20 @@ it('renders correctly', () => {
     expect(tree).toMatchSnapshot();
 });
 
+it('throws error on empty value array', () => {
+    const func = jest.fn();
+
+    const renderFunc = () => {
+        renderer.create(
+            <InputText
+                value={[]}
+                handleChange={func}
+                style={{ width: 100 }}
+                placeholder='test-placeholder' />
+        );
+    }
+    expect(renderFunc).toThrow(/Value array.*only one/);
+});
 
 it('handles text changes', () => {
     const func = jest.fn();

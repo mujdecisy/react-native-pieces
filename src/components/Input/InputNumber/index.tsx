@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { ViewStyle, TextInput } from 'react-native';
 import ColorScheme from '../../../utils/colors';
 import { ValidStates } from '../types';
@@ -11,28 +11,29 @@ export interface InputNumberProps {
 }
 
 const InputNumber = (props: InputNumberProps) => {
-    const inputRef = useRef<TextInput>(null);
+    const [bgColor, setBgColor] = useState(props.style.backgroundColor);
+
+    if (props.value.length !== 1) {
+        throw new Error('Value array must have only one string value inside.');
+    }
 
     const localHandleChange = (value: string) => {
         let tValid = ValidStates.UNDEFINED;
-        let bgColor = props.style.backgroundColor;
+        let tBgColor = props.style.backgroundColor;
         if (value !== '') {
             tValid = !isNaN(parseFloat(value)) && !isNaN(+value) ? ValidStates.VALID : ValidStates.INVALID;
-            bgColor = (tValid===ValidStates.VALID)
+            tBgColor = (tValid===ValidStates.VALID)
                 ?(ColorScheme.hyalo(ColorScheme.get().positive))
                 :(ColorScheme.hyalo(ColorScheme.get().negative));
         }
-        inputRef.current?.setNativeProps({
-            style: {backgroundColor: bgColor}
-        });
+        setBgColor(tBgColor);
         props.handleChange([value], tValid);
     }
 
     return (
         <TextInput
-            ref={inputRef}
-            style={props.style}
-            value={props.value.length>0? props.value[0]:''}
+            style={[props.style, {backgroundColor: bgColor}]}
+            value={props.value[0]}
             onChangeText={(value: string)=>localHandleChange(value)}
             placeholder={props.placeholder}
             placeholderTextColor={ColorScheme.get().textLight}
