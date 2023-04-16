@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { ViewStyle, TextInput } from 'react-native';
 import ColorScheme from '../../../utils/colors';
 import { ValidStates } from '../types';
 import ButtonIcon from '../../ButtonIcon';
 import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
-import Calendar from '../../Calendar';
-import { dateToString } from '../../Calendar';
+import Calendar, { dateToString } from '../../Calendar';
 import ButtonText from '../../ButtonText';
 import Takoz from '../../Takoz';
 
@@ -17,30 +16,30 @@ export interface InputDateProps {
 }
 
 const InputDate = (props: InputDateProps) => {
-  const inputRef = useRef<TextInput>(null);
+  const [bgColor, setBgColor] = useState(props.style.backgroundColor);
 
-  const localHandleChange = (value: string) => {
-    let tValid = ValidStates.UNDEFINED;
-    let bgColor = props.style.backgroundColor;
-    if (value !== '') {
-      tValid = checkIfDate(value) ? ValidStates.VALID : ValidStates.INVALID;
-      bgColor =
-        tValid === ValidStates.VALID
-          ? ColorScheme.hyalo(ColorScheme.get().positive)
-          : ColorScheme.hyalo(ColorScheme.get().negative);
-    }
-    inputRef.current?.setNativeProps({
-      style: { backgroundColor: bgColor },
-    });
-    props.handleChange([value], tValid);
-  };
+  if (props.value.length !== 1) {
+    console.error('Value array must have only one string value inside.');
+    return <></>;
+  }
 
   return (
     <TextInput
-      ref={inputRef}
-      style={props.style}
-      value={props.value.length > 0 ? props.value[0] : ''}
-      onChangeText={(value: string) => localHandleChange(value)}
+      style={[props.style, { backgroundColor: bgColor }]}
+      value={props.value[0]}
+      onChangeText={(value: string) => {
+        const tValid = isDate(value);
+        setBgColor(
+          {
+            [ValidStates.UNDEFINED]: props.style.backgroundColor,
+            [ValidStates.VALID]: ColorScheme.hyalo(ColorScheme.get().positive),
+            [ValidStates.INVALID]: ColorScheme.hyalo(
+              ColorScheme.get().negative
+            ),
+          }[tValid]
+        );
+        props.handleChange([value], tValid);
+      }}
       placeholder={props.placeholder}
       placeholderTextColor={ColorScheme.get().textLight}
     />
@@ -76,7 +75,7 @@ export const InputDateModalContent = ({
   handleChange: (date: string[]) => void;
 }) => {
   const [stateTargetDate, setStateTargetDate] = useState(
-    checkIfDate(targetDate[0]) ? new Date(targetDate[0] as string) : new Date()
+    new Date(targetDate[0] || new Date().getTime())
   );
 
   return (
@@ -98,14 +97,41 @@ export const InputDateModalContent = ({
   );
 };
 
-export const checkIfDate = (value: string | undefined) => {
-  if (!value) {
-    return false;
+export const isDate = (value: string) => {
+  if (value === '') {
+    return ValidStates.UNDEFINED;
   }
-  const date = new Date(value);
-  return (
-    date instanceof Date &&
-    !isNaN(date.getTime()) &&
-    /\d{4}-\d{2}-\d{2}/.test(value)
-  );
+  const tokens = value.split('-').map(Number);
+  if (tokens.length !== 3) {
+    return ValidStates.INVALID;
+  }
+  const year = tokens[0] as number;
+  const month = tokens[1] as number;
+  const day = tokens[2] as number;
+
+  if (
+    isNaN(year) ||
+    isNaN(month) ||
+    isNaN(day) ||
+    month < 1 ||
+    month > 12 ||
+    day < 1 ||
+    day > 31
+  ) {
+    return ValidStates.INVALID;
+  }
+  if (
+    (month === 4 || month === 6 || month === 9 || month === 11) &&
+    day === 31
+  ) {
+    return ValidStates.INVALID;
+  }
+  if (
+    month === 2 &&
+    (((year % 4 !== 0 || year % 100 === 0) && year % 400 !== 0 && day > 28) ||
+      day > 29)
+  ) {
+    return ValidStates.INVALID;
+  }
+  return ValidStates.VALID;
 };

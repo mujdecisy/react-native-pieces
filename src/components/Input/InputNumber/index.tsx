@@ -13,23 +13,6 @@ export interface InputNumberProps {
 const InputNumber = (props: InputNumberProps) => {
   const [bgColor, setBgColor] = useState(props.style.backgroundColor);
 
-  const localHandleChange = (value: string) => {
-    let tValid = ValidStates.UNDEFINED;
-    let tBgColor = props.style.backgroundColor;
-    if (value !== '') {
-      tValid =
-        !isNaN(parseFloat(value)) && !isNaN(+value)
-          ? ValidStates.VALID
-          : ValidStates.INVALID;
-      tBgColor =
-        tValid === ValidStates.VALID
-          ? ColorScheme.hyalo(ColorScheme.get().positive)
-          : ColorScheme.hyalo(ColorScheme.get().negative);
-    }
-    setBgColor(tBgColor);
-    props.handleChange([value], tValid);
-  };
-
   if (props.value.length !== 1) {
     console.error('Value array must have only one string value inside.');
     return <></>;
@@ -39,7 +22,19 @@ const InputNumber = (props: InputNumberProps) => {
     <TextInput
       style={[props.style, { backgroundColor: bgColor }]}
       value={props.value[0]}
-      onChangeText={(value: string) => localHandleChange(value)}
+      onChangeText={(value: string) => {
+        const tValid = isNumber(value);
+        setBgColor(
+          {
+            [ValidStates.UNDEFINED]: props.style.backgroundColor,
+            [ValidStates.VALID]: ColorScheme.hyalo(ColorScheme.get().positive),
+            [ValidStates.INVALID]: ColorScheme.hyalo(
+              ColorScheme.get().negative
+            ),
+          }[tValid]
+        );
+        props.handleChange([value], tValid);
+      }}
       placeholder={props.placeholder}
       placeholderTextColor={ColorScheme.get().textLight}
     />
@@ -47,3 +42,12 @@ const InputNumber = (props: InputNumberProps) => {
 };
 
 export default InputNumber;
+
+const isNumber = (value: string) => {
+  if (value === '') {
+    return ValidStates.UNDEFINED;
+  }
+  return !isNaN(parseFloat(value)) && !isNaN(+value)
+    ? ValidStates.VALID
+    : ValidStates.INVALID;
+};

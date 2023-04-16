@@ -11,21 +11,21 @@ export interface CalendarProps {
   renderCell?: (date: Date) => React.ReactNode;
 }
 
+const TP_RATIO = 0.3;
+const COUNT_MAX_ROW = 6;
+const HEIGHT_ROW = 40;
+
 const COLOR_PRIMARY_LIGHT = ColorScheme.hyalo(ColorScheme.get().primary, 0.3);
 const COLOR_SECONDARY_LIGHT = ColorScheme.hyalo(
   ColorScheme.get().secondary,
-  0.3
+  TP_RATIO
 );
 
 const Calendar = (props: CalendarProps) => {
-  const [dates, setDates] = useState([] as Date[][]);
-  const [targetDate, setTargetDate] = useState(new Date());
-
-  useEffect(() => {
-    const tdate = new Date();
-    setDates(getCalendarDates(tdate));
-    setTargetDate(tdate);
-  }, []);
+  const [dates, setDates] = useState(
+    getCalendarDates(props.targetDate || new Date())
+  );
+  const [targetDate, setTargetDate] = useState(props.targetDate || new Date());
 
   useEffect(() => {
     if (targetDate instanceof Date) {
@@ -34,10 +34,15 @@ const Calendar = (props: CalendarProps) => {
         props.handleChange(targetDate);
       }
     }
-  }, [targetDate, props]);
+  }, [props.targetDate, targetDate]);
+
+  if (dates.length < 1) {
+    return (<></>);
+  }
 
   return (
-    <View style={{ marginBottom: (6 - dates.length) * 40 }}>
+    <View style={{ marginBottom: (COUNT_MAX_ROW - dates.length) * HEIGHT_ROW }}>
+      {/** ------------------------------------------ MONTH CONTROL */}
       <View style={styles.monthControlCont}>
         <ButtonIcon
           faIcon={faAngleLeft}
@@ -60,7 +65,10 @@ const Calendar = (props: CalendarProps) => {
           }}
         />
       </View>
+
+      {/** ------------------------------------------ CALENDAR GRID */}
       <View style={styles.gridCont}>
+        {/** -------------------------------- HEADER DAYS */}
         <View style={{ ...styles.gridRow, ...{ borderTopWidth: 0 } }}>
           {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((e) => (
             <View
@@ -71,6 +79,8 @@ const Calendar = (props: CalendarProps) => {
             </View>
           ))}
         </View>
+
+        {/** -------------------------------- DATES */}
         {dates.map((e, ix) => (
           <View style={styles.gridRow} key={`week-${ix}`}>
             {e.map((e1, ix1) => (
@@ -95,15 +105,15 @@ const Calendar = (props: CalendarProps) => {
                     },
                     ...(dateToString(e1) === dateToString(targetDate)
                       ? {
-                          backgroundColor: ColorScheme.get().primary,
-                          borderRadius: 5,
-                          ...shadowBox(),
-                        }
+                        backgroundColor: ColorScheme.get().primary,
+                        borderRadius: 5,
+                        ...shadowBox(),
+                      }
                       : {}),
                     ...(e1.getMonth() !== targetDate.getMonth()
                       ? {
-                          backgroundColor: COLOR_SECONDARY_LIGHT,
-                        }
+                        backgroundColor: COLOR_SECONDARY_LIGHT,
+                      }
                       : {}),
                   }}
                 >
