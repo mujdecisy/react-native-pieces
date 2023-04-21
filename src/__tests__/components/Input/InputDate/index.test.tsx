@@ -1,5 +1,8 @@
 import React, { useState as useStateMock } from 'react';
-import InputDate, { InputDateModalContent, InputDateRightButton } from '../../../../components/Input/InputDate';
+import InputDate, {
+  InputDateModalContent,
+  InputDateRightButton,
+} from '../../../../components/Input/InputDate';
 import renderer, { ReactTestRendererJSON } from 'react-test-renderer';
 import { ValidStates } from '../../../../components/Input/types';
 import ColorScheme from '../../../../utils/colors';
@@ -27,7 +30,6 @@ it('renders correctly', () => {
   const tree = component.toJSON() as ReactTestRendererJSON;
   expect(tree).toMatchSnapshot();
 });
-
 
 it('shows empty when sending empty array as value', () => {
   let errString = '';
@@ -150,7 +152,6 @@ it('resets color when deleting input', () => {
   expect(setBgColor).toHaveBeenLastCalledWith(undefined);
 });
 
-
 it('renders correctly date button', () => {
   const func = jest.fn();
   const component = renderer.create(
@@ -165,42 +166,36 @@ it('renders correctly date button', () => {
   expect(tree).toMatchSnapshot();
 });
 
-
 it('renders correctly date modal content', () => {
   const func = jest.fn();
   const component = renderer.create(
-    <InputDateModalContent
-      handleChange={func}
-      targetDate={['2023-01-01']}
-    />
+    <InputDateModalContent handleChange={func} targetDate={['2023-01-01']} />
   );
 
   const tree = component.toJSON() as ReactTestRendererJSON[];
   expect(tree).toMatchSnapshot();
 });
 
-it('handles click on save new date', async () => {
+it('handles click on save new date', () => {
   const func = jest.fn();
   const component = renderer.create(
-    <InputDateModalContent
-      handleChange={func}
-      targetDate={['2023-01-01']}
-    />
+    <InputDateModalContent handleChange={func} targetDate={['2023-01-01']} />
   );
 
   let tree = component.toJSON() as ReactTestRendererJSON[];
   expect(tree).toMatchSnapshot();
 
-  tree = component.toJSON() as ReactTestRendererJSON[];
-
-  tree = component.toJSON() as ReactTestRendererJSON[];
-
-  await renderer.act(async ()=>{
-    // TODO find a way to click a day in calendar and control changes
-    tree[2]?.props.onClick();
+  // TODO can not change date by clicking. find a way
+  renderer.act(() => {
+    // @ts-ignore
+    tree[0].children[1].children[3].children[3].props.onClick();
   });
-
   tree = component.toJSON() as ReactTestRendererJSON[];
+
+  renderer.act(() => {
+    // @ts-ignore
+    tree[2].props.onClick();
+  });
 
   expect(func).toHaveBeenLastCalledWith(['2023-01-01']);
 });

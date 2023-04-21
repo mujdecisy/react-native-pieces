@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 import ColorScheme from '../../utils/colors';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import ButtonIcon from '../ButtonIcon';
@@ -22,23 +22,15 @@ const COLOR_SECONDARY_LIGHT = ColorScheme.hyalo(
 );
 
 const Calendar = (props: CalendarProps) => {
-  const [dates, setDates] = useState(
-    getCalendarDates(props.targetDate || new Date())
-  );
-  const [targetDate, setTargetDate] = useState(props.targetDate || new Date());
+  const [dates, setDates] = useState(getCalendarDates(props.targetDate));
+  const [targetDate, setTargetDate] = useState(props.targetDate);
 
   useEffect(() => {
-    if (targetDate instanceof Date) {
-      setDates(getCalendarDates(targetDate));
-      if (props.handleChange) {
-        props.handleChange(targetDate);
-      }
+    setDates(getCalendarDates(targetDate));
+    if (props.handleChange) {
+      props.handleChange(targetDate);
     }
-  }, [props.targetDate, targetDate]);
-
-  if (dates.length < 1) {
-    return (<></>);
-  }
+  }, [props, targetDate]);
 
   return (
     <View style={{ marginBottom: (COUNT_MAX_ROW - dates.length) * HEIGHT_ROW }}>
@@ -105,15 +97,15 @@ const Calendar = (props: CalendarProps) => {
                     },
                     ...(dateToString(e1) === dateToString(targetDate)
                       ? {
-                        backgroundColor: ColorScheme.get().primary,
-                        borderRadius: 5,
-                        ...shadowBox(),
-                      }
+                          backgroundColor: ColorScheme.get().primary,
+                          borderRadius: 5,
+                          ...shadowBox(),
+                        }
                       : {}),
                     ...(e1.getMonth() !== targetDate.getMonth()
                       ? {
-                        backgroundColor: COLOR_SECONDARY_LIGHT,
-                      }
+                          backgroundColor: COLOR_SECONDARY_LIGHT,
+                        }
                       : {}),
                   }}
                 >
