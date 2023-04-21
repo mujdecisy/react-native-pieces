@@ -65,8 +65,8 @@ it('clicks a propriate day', () => {
   tree = component.toJSON() as ReactTestRendererJSON;
 
   expect(fun).toHaveBeenCalled();
-  // @ts-ignore
   expect(
+    // @ts-ignore
     tree.children[1].children[3].children[3].children[0].props.style
       .backgroundColor
   ).toBe(ColorScheme.get().primary);
