@@ -52,7 +52,7 @@ export default class SizeScheme {
 
   public static set(schemeP: ISizeScheme) {
     SizeScheme.controlScheme(schemeP);
-    schemeP.screen.height.min = Dimensions.get('screen').height;
+    schemeP.screen.height.min = Dimensions.get('window').height;
     SizeScheme.scheme = deepCopy(schemeP);
   }
 
@@ -62,7 +62,7 @@ export default class SizeScheme {
 
   public static get(): ISizeScheme {
     if (!SizeScheme.scheme) {
-      SizeScheme.set(deepCopy(DEFAULT_SCHEME));
+      SizeScheme.setDefault();
     }
     return deepCopy(SizeScheme.scheme);
   }

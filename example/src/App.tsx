@@ -15,6 +15,7 @@ import {
   Calendar,
   Input,
   Modal,
+  Settings,
 } from 'react-native-pieces';
 import {
   faFloppyDisk,
@@ -61,13 +62,16 @@ interface FormInput {
   type: InputTypes;
   label: string;
   options: string[];
+  settings?: Settings[];
 }
 
 export default function App() {
+  console.log(SizeScheme.get().screen.height);
   const [modalVisible, setModalVisible] = useState(false);
   const [halfModalVisible, setHalfModalVisible] = useState(false);
   const [form, setForm] = useState([
     { value: [''], type: InputTypes.TEXT, label: 'Name' },
+    { value: [''], type: InputTypes.TEXT, label: 'Address', settings: [Settings.TEXT_MULTILINE]},
     { value: [''], type: InputTypes.NUMBER, label: 'Weight' },
     { value: [''], type: InputTypes.DATE, label: 'Birth Date' },
     {
@@ -197,6 +201,7 @@ export default function App() {
           type={e.type}
           value={e.value}
           options={e.options}
+          settings={e.settings}
         />
       ))}
 
