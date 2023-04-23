@@ -1,6 +1,6 @@
 {
   "name": "react-native-pieces",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -102,7 +102,7 @@
   "packageManager": "^yarn@1.22.15",
   "jest": {
     "preset": "react-native",
-    "fakeTimers" : {
+    "fakeTimers": {
       "enableGlobally": true
     },
     "modulePathIgnorePatterns": [
