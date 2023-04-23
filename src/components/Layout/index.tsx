@@ -11,7 +11,12 @@ export interface LayoutProps {
 
 const Layout = (props: LayoutProps) => {
   return (
-    <View style={styles.background}>
+    <View
+      style={[
+        styles.background,
+        { minHeight: SizeScheme.get().screen.height.min },
+      ]}
+    >
       <ScrollView>
         <View style={styles.container}>
           <Takoz height={40} />

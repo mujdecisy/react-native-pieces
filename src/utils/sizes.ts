@@ -1,3 +1,4 @@
+import { Dimensions } from 'react-native';
 import { deepCopy } from './funcs';
 
 export interface ISizeScheme {
@@ -15,6 +16,9 @@ export interface ISizeScheme {
   screen: {
     width: {
       max: number;
+      min: number;
+    };
+    height: {
       min: number;
     };
   };
@@ -37,6 +41,9 @@ const DEFAULT_SCHEME = {
       max: 500,
       min: 360,
     },
+    height: {
+      min: 500,
+    },
   },
 } as ISizeScheme;
 
@@ -45,11 +52,12 @@ export default class SizeScheme {
 
   public static set(schemeP: ISizeScheme) {
     SizeScheme.controlScheme(schemeP);
+    schemeP.screen.height.min = Dimensions.get('screen').height;
     SizeScheme.scheme = deepCopy(schemeP);
   }
 
   public static setDefault() {
-    SizeScheme.scheme = deepCopy(DEFAULT_SCHEME);
+    SizeScheme.set(DEFAULT_SCHEME);
   }
 
   public static get(): ISizeScheme {
