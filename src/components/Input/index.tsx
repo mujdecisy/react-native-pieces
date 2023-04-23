@@ -120,8 +120,6 @@ const Input = (props: InputProps) => {
         />
       );
       break;
-    default:
-      break;
   }
 
   return (

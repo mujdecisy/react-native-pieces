@@ -86,6 +86,20 @@ it('renders modal content correctly for multi input type', () => {
   expect(tree).toMatchSnapshot();
 });
 
+it('renders modal content correctly for multi input type with selected', () => {
+  const component = renderer.create(
+    <InputSelectModalContent
+      handleChange={() => {}}
+      options={OPTIONS}
+      type={InputTypes.MULTI}
+      value={['0', '1']}
+    />
+  );
+
+  const tree = component.toJSON() as ReactTestRendererJSON;
+  expect(tree).toMatchSnapshot();
+});
+
 it('handles clicks correctly for single input type', () => {
   const fun = jest.fn();
   const component = renderer.create(
