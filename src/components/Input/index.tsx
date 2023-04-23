@@ -11,7 +11,7 @@ import InputDate, {
 } from './InputDate';
 import Modal from '../Modal';
 import InputSelect, { InputSelectModalContent } from './InputSelect';
-import { InputTypes, ValidStates } from './types';
+import { InputTypes, Settings, ValidStates } from './types';
 
 export interface InputProps {
   label: string;
@@ -20,6 +20,7 @@ export interface InputProps {
   handleChange: (value: string[], validState: ValidStates) => void;
   options?: string[];
   placeholder?: string;
+  settings?: Settings[];
 }
 
 const COLOR_PRIMARY_LIGHT = ColorScheme.hyalo(ColorScheme.get().primary, 0.3);
@@ -50,6 +51,7 @@ const Input = (props: InputProps) => {
           }}
           value={props.value}
           placeholder={props.placeholder || DEFAULT_PLACEHOLDERS[props.type]}
+          settings={props.settings || ([] as Settings[])}
         />
       );
       break;

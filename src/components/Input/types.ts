@@ -11,3 +11,7 @@ export enum InputTypes {
   SINGLE,
   MULTI,
 }
+
+export enum Settings {
+  TEXT_MULTILINE,
+}

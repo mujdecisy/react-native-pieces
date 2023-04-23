@@ -1,12 +1,14 @@
 import React from 'react';
 import { ViewStyle, TextInput } from 'react-native';
 import ColorScheme from '../../../utils/colors';
+import { Settings } from '../types';
 
 export interface InputTextProps {
   style: ViewStyle;
   value: string[];
   placeholder: string;
   handleChange: (value: string[]) => void;
+  settings: Settings[];
 }
 
 const InputText = (props: InputTextProps) => {
@@ -18,6 +20,10 @@ const InputText = (props: InputTextProps) => {
     <TextInput
       style={props.style}
       value={props.value[0]}
+      multiline={props.settings.includes(Settings.TEXT_MULTILINE)}
+      numberOfLines={
+        props.settings.includes(Settings.TEXT_MULTILINE) ? 5 : undefined
+      }
       onChangeText={(value: string) => props.handleChange([value])}
       placeholder={props.placeholder}
       placeholderTextColor={ColorScheme.get().textLight}
