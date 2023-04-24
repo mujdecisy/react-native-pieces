@@ -12,6 +12,7 @@ export interface ISizeScheme {
   };
   gap: {
     pad: number;
+    layoutTop: number;
   };
   screen: {
     width: {
@@ -35,6 +36,7 @@ const DEFAULT_SCHEME = {
   },
   gap: {
     pad: 20,
+    layoutTop: 1,
   },
   screen: {
     width: {

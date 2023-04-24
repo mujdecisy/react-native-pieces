@@ -19,7 +19,7 @@ const Layout = (props: LayoutProps) => {
     >
       <ScrollView>
         <View style={styles.container}>
-          <Takoz height={40} />
+          <Takoz height={SizeScheme.get().gap.layoutTop} />
           {props.children}
         </View>
       </ScrollView>
