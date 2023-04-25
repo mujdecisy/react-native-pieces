@@ -71,7 +71,12 @@ export default function App() {
   const [halfModalVisible, setHalfModalVisible] = useState(false);
   const [form, setForm] = useState([
     { value: [''], type: InputTypes.TEXT, label: 'Name' },
-    { value: [''], type: InputTypes.TEXT, label: 'Address', settings: [Settings.TEXT_MULTILINE]},
+    {
+      value: [''],
+      type: InputTypes.TEXT,
+      label: 'Address',
+      settings: [Settings.TEXT_MULTILINE],
+    },
     { value: [''], type: InputTypes.NUMBER, label: 'Weight' },
     { value: [''], type: InputTypes.DATE, label: 'Birth Date' },
     {
