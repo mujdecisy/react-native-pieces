@@ -36,7 +36,7 @@ const DEFAULT_SCHEME = {
   },
   gap: {
     pad: 20,
-    layoutTop: 1,
+    layoutTop: 40,
   },
   screen: {
     width: {
