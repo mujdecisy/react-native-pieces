@@ -92,6 +92,7 @@ export default function App() {
       options: cities,
     },
   ] as FormInput[]);
+  const [modalInput, setModalInput] = useState('');
 
   return (
     <Layout>
@@ -224,13 +225,21 @@ export default function App() {
       <Modal
         visible={halfModalVisible}
         style={{
-          height: 500,
+          height: 400,
         }}
         handleClose={() => {
           setHalfModalVisible(false);
         }}
       >
         <Text>Hello from half modal</Text>
+        <Input
+          value={[modalInput]}
+          handleChange={(val) => {
+            setModalInput(val[0] || '');
+          }}
+          label="Some Text"
+          type={InputTypes.TEXT}
+        />
       </Modal>
     </Layout>
   );

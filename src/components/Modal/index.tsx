@@ -20,7 +20,7 @@ export interface ModalProps {
 }
 
 const Modal = (props: ModalProps) => {
-  const height = Dimensions.get('window').height;
+  const height = Dimensions.get('screen').height;
   const width = Math.min(
     Math.max(Dimensions.get('window').width, SizeScheme.get().screen.width.min),
     SizeScheme.get().screen.width.max
