@@ -1,6 +1,6 @@
 {
   "name": "react-native-pieces",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -79,7 +79,7 @@
   "resolutions": {
     "@types/react": "17.0.21"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@fortawesome/fontawesome-common-types": "^6.4.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
