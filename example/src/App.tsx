@@ -16,7 +16,7 @@ import {
   Input,
   Modal,
   Settings,
-} from 'react-native-pieces';
+} from '@19sth/react-native-pieces';
 import {
   faFloppyDisk,
   faEnvelope,
