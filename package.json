@@ -1,6 +1,6 @@
 {
   "name": "@19sth/react-native-pieces",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
