@@ -4,6 +4,6 @@
   "lang": "en",
   "name": "example",
   "short_name": "example",
-  "start_url": "/?utm_source=web_app_manifest",
+  "start_url": "/react-native-pieces/?utm_source=web_app_manifest",
   "orientation": "portrait"
 }
