@@ -71,3 +71,5 @@ lib/
 
 **/__snapshots__
 **/coverage
+
+example/web-build

@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "web-export" : "expo export:web"
   },
   "dependencies": {
     "@fortawesome/fontawesome-common-types": "^6.4.0",
