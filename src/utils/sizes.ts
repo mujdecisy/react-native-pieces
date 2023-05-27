@@ -21,6 +21,8 @@ export interface ISizeScheme {
     };
     height: {
       min: number;
+      window: number;
+      screen: number;
     };
   };
 }
@@ -45,6 +47,8 @@ const DEFAULT_SCHEME = {
     },
     height: {
       min: 500,
+      window: 0,
+      screen: 0
     },
   },
 } as ISizeScheme;
@@ -54,6 +58,8 @@ export default class SizeScheme {
 
   public static set(schemeP: ISizeScheme) {
     SizeScheme.controlScheme(schemeP);
+    schemeP.screen.height.window = Dimensions.get('window').height;
+    schemeP.screen.height.screen = Dimensions.get('screen').height;
     schemeP.screen.height.min = Dimensions.get('window').height;
     SizeScheme.scheme = deepCopy(schemeP);
   }
