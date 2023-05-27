@@ -66,7 +66,6 @@ interface FormInput {
 }
 
 export default function App() {
-  console.log(SizeScheme.get().screen.height);
   const [modalVisible, setModalVisible] = useState(false);
   const [halfModalVisible, setHalfModalVisible] = useState(false);
   const [form, setForm] = useState([
@@ -75,7 +74,7 @@ export default function App() {
       value: [''],
       type: InputTypes.TEXT,
       label: 'Address',
-      settings: [Settings.TEXT_MULTILINE],
+      settings: [Settings.TEXT_MULTILINE_6],
     },
     { value: [''], type: InputTypes.NUMBER, label: 'Weight' },
     { value: [''], type: InputTypes.DATE, label: 'Birth Date' },

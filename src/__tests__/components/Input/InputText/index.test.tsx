@@ -29,7 +29,7 @@ it('renders multiline correctly', () => {
       handleChange={func}
       style={{ width: 100 }}
       placeholder="test-placeholder"
-      settings={[Settings.TEXT_MULTILINE]}
+      settings={[Settings.TEXT_MULTILINE_6]}
     />
   );
 

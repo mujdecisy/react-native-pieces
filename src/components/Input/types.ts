@@ -13,5 +13,6 @@ export enum InputTypes {
 }
 
 export enum Settings {
-  TEXT_MULTILINE,
+  TEXT_MULTILINE_6,
+  TEXT_MULTILINE_12
 }

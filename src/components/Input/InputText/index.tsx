@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ViewStyle, TextInput } from 'react-native';
 import ColorScheme from '../../../utils/colors';
 import { Settings } from '../types';
@@ -12,18 +12,28 @@ export interface InputTextProps {
 }
 
 const InputText = (props: InputTextProps) => {
+  const [lineCount, setLineCount] = useState(1);
+  useEffect(()=>{
+    if (props.settings.includes(Settings.TEXT_MULTILINE_6)) {
+      setLineCount(6);
+    } else if (props.settings.includes(Settings.TEXT_MULTILINE_12)) {
+      setLineCount(12);
+    } else {
+      setLineCount(1);
+    }
+  }, []);
+
   if (props.value.length !== 1) {
     console.error('Value array must have only one string value inside.');
     return <></>;
   }
+
   return (
     <TextInput
       style={props.style}
       value={props.value[0]}
-      multiline={props.settings.includes(Settings.TEXT_MULTILINE)}
-      numberOfLines={
-        props.settings.includes(Settings.TEXT_MULTILINE) ? 5 : undefined
-      }
+      multiline={lineCount>1}
+      numberOfLines={lineCount}
       onChangeText={(value: string) => props.handleChange([value])}
       placeholder={props.placeholder}
       placeholderTextColor={ColorScheme.get().textLight}
