@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-import { View, Text } from 'react-native';
+import { View, Text, Linking } from 'react-native';
 
 import {
   Layout,
@@ -211,6 +211,26 @@ export default function App() {
       ))}
 
       <Takoz height={400} />
+
+      <View>
+        <ButtonText
+          label='Visit repository'
+          handleClick={()=>{
+            Linking.openURL('https://github.com/19sth/react-native-pieces')
+            .catch(err => {
+              console.error(err);
+            })
+          }}
+          style={{
+            backgroundColor: 'transparent',
+            shadowColor: 'transparent',
+          }}
+          labelStyle={{
+            fontSize: SizeScheme.get().font.e,
+            textDecorationColor: 'black',
+            textDecorationLine: 'underline'
+          }}/>
+      </View>
 
       <Modal
         visible={modalVisible}

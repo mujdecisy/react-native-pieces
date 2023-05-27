@@ -3,11 +3,13 @@ import { Text, StyleSheet, ViewStyle, Pressable } from 'react-native';
 import ColorScheme from '../../utils/colors';
 import SizeScheme from '../../utils/sizes';
 import { shadowBox } from '../../utils/styles';
+import type { TextStyle } from 'react-native';
 
 export interface ButtonTextProps {
   label: string;
   handleClick: () => void;
   style?: ViewStyle;
+  labelStyle?: TextStyle;
 }
 
 const ButtonText = (props: ButtonTextProps) => {
@@ -16,7 +18,7 @@ const ButtonText = (props: ButtonTextProps) => {
       style={{ ...styles.button, ...props.style }}
       onPress={props.handleClick}
     >
-      <Text style={styles.label}>{props.label}</Text>
+      <Text style={{...styles.label, ...props.labelStyle}}>{props.label}</Text>
     </Pressable>
   );
 };
