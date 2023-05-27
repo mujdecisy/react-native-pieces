@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/react-native-pieces/static/js/main.70b2340c.js",
-    "static/js/904.c9146c14.js": "/react-native-pieces/static/js/904.c9146c14.js",
+    "main.js": "/react-native-pieces/static/js/main.bac9fa1c.js",
+    "static/js/904.ac6e9355.js": "/react-native-pieces/static/js/904.ac6e9355.js",
     "favicon.ico": "/react-native-pieces/favicon.ico",
     "index.html": "/react-native-pieces/index.html",
     "favicon-32.png": "/react-native-pieces/favicon-32.png",
     "favicon-16.png": "/react-native-pieces/favicon-16.png",
     "serve.json": "/react-native-pieces/serve.json",
     "manifest.json": "/react-native-pieces/manifest.json",
-    "main.70b2340c.js.map": "/react-native-pieces/static/js/main.70b2340c.js.map",
-    "904.c9146c14.js.map": "/react-native-pieces/static/js/904.c9146c14.js.map"
+    "main.bac9fa1c.js.map": "/react-native-pieces/static/js/main.bac9fa1c.js.map",
+    "904.ac6e9355.js.map": "/react-native-pieces/static/js/904.ac6e9355.js.map"
   },
   "entrypoints": [
-    "static/js/904.c9146c14.js",
-    "static/js/main.70b2340c.js"
+    "static/js/904.ac6e9355.js",
+    "static/js/main.bac9fa1c.js"
   ]
 }
