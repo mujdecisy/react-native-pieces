@@ -13,7 +13,7 @@ export interface InputTextProps {
 
 const InputText = (props: InputTextProps) => {
   const [lineCount, setLineCount] = useState(1);
-  useEffect(()=>{
+  useEffect(() => {
     if (props.settings.includes(Settings.TEXT_MULTILINE_6)) {
       setLineCount(6);
     } else if (props.settings.includes(Settings.TEXT_MULTILINE_12)) {
@@ -21,7 +21,7 @@ const InputText = (props: InputTextProps) => {
     } else {
       setLineCount(1);
     }
-  }, []);
+  }, [props.settings]);
 
   if (props.value.length !== 1) {
     console.error('Value array must have only one string value inside.');
@@ -32,7 +32,7 @@ const InputText = (props: InputTextProps) => {
     <TextInput
       style={props.style}
       value={props.value[0]}
-      multiline={lineCount>1}
+      multiline={lineCount > 1}
       numberOfLines={lineCount}
       onChangeText={(value: string) => props.handleChange([value])}
       placeholder={props.placeholder}

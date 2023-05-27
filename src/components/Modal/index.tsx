@@ -23,7 +23,7 @@ const Modal = (props: ModalProps) => {
   const height = Math.min(
     SizeScheme.get().screen.height.screen,
     SizeScheme.get().screen.height.window
-    );
+  );
   const width = Math.min(
     Math.max(Dimensions.get('window').width, SizeScheme.get().screen.width.min),
     SizeScheme.get().screen.width.max

@@ -48,7 +48,7 @@ const DEFAULT_SCHEME = {
     height: {
       min: 500,
       window: 0,
-      screen: 0
+      screen: 0,
     },
   },
 } as ISizeScheme;

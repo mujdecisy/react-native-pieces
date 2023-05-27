@@ -18,7 +18,9 @@ const ButtonText = (props: ButtonTextProps) => {
       style={{ ...styles.button, ...props.style }}
       onPress={props.handleClick}
     >
-      <Text style={{...styles.label, ...props.labelStyle}}>{props.label}</Text>
+      <Text style={{ ...styles.label, ...props.labelStyle }}>
+        {props.label}
+      </Text>
     </Pressable>
   );
 };

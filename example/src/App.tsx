@@ -214,12 +214,13 @@ export default function App() {
 
       <View>
         <ButtonText
-          label='Visit repository'
-          handleClick={()=>{
-            Linking.openURL('https://github.com/19sth/react-native-pieces')
-            .catch(err => {
+          label="Visit repository"
+          handleClick={() => {
+            Linking.openURL(
+              'https://github.com/19sth/react-native-pieces'
+            ).catch((err) => {
               console.error(err);
-            })
+            });
           }}
           style={{
             backgroundColor: 'transparent',
@@ -228,8 +229,9 @@ export default function App() {
           labelStyle={{
             fontSize: SizeScheme.get().font.e,
             textDecorationColor: 'black',
-            textDecorationLine: 'underline'
-          }}/>
+            textDecorationLine: 'underline',
+          }}
+        />
       </View>
 
       <Modal
