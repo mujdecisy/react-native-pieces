@@ -16,6 +16,7 @@ import {
   Input,
   Modal,
   Settings,
+  CheckBox,
 } from '@19sth/react-native-pieces';
 import {
   faFloppyDisk,
@@ -209,6 +210,18 @@ export default function App() {
           settings={e.settings}
         />
       ))}
+
+      <Takoz />
+
+      <CheckBox
+        items={[
+          { name: 'The Shawshank Redemption', value: '0' },
+          { name: 'The Godfather', value: '1' },
+          { name: 'Spider-Man: Across the Spider-Verse', value: '2' },
+          { name: 'The Dark Knight', value: '3' },
+          { name: "Schindler's List", value: '4' },
+        ]}
+      />
 
       <Takoz height={400} />
 

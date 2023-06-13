@@ -11,6 +11,7 @@ import ColorScheme from './utils/colors';
 import SizeScheme from './utils/sizes';
 import * as StyleFuncs from './utils/styles';
 import { InputTypes, ValidStates, Settings } from './components/Input/types';
+import CheckBox from './components/CheckBox';
 
 export {
   ButtonIcon,
@@ -28,4 +29,5 @@ export {
   InputTypes,
   ValidStates,
   Settings,
+  CheckBox,
 };
