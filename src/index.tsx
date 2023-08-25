@@ -12,6 +12,8 @@ import SizeScheme from './utils/sizes';
 import * as StyleFuncs from './utils/styles';
 import { InputTypes, ValidStates, Settings } from './components/Input/types';
 import CheckBox from './components/CheckBox';
+import ScreenIOStorage from './screens/IOStorage';
+import ContentView, { ContentViewType } from './components/ContentView';
 
 export {
   ButtonIcon,
@@ -30,4 +32,7 @@ export {
   ValidStates,
   Settings,
   CheckBox,
+  ContentView,
+  ContentViewType,
+  ScreenIOStorage,
 };
