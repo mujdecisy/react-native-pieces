@@ -17,7 +17,7 @@ import {
   Modal,
   Settings,
   CheckBox,
-} from '@19sth/react-native-pieces';
+} from 'react-native-pieces';
 import {
   faFloppyDisk,
   faEnvelope,
@@ -235,7 +235,7 @@ export default function Main({
           label="Visit repository"
           handleClick={() => {
             Linking.openURL(
-              'https://github.com/19sth/react-native-pieces'
+              'https://github.com/mujdecisy/react-native-pieces'
             ).catch((err) => {
               console.error(err);
             });

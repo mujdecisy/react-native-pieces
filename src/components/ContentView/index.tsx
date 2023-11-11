@@ -1,4 +1,4 @@
-import { SizeScheme } from '@19sth/react-native-pieces';
+import { SizeScheme } from 'react-native-pieces';
 import React from 'react';
 import { ScrollView, View } from 'react-native';
 

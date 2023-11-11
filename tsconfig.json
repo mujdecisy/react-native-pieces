@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@19sth/react-native-pieces": ["./src/index"]
+      "react-native-pieces": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
